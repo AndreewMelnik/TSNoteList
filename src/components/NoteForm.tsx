@@ -10,6 +10,7 @@ export function NoteForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const {addNote} = notesSlice.actions;
+    const {deleteNote} = notesSlice.actions;
     const dispatch = useDispatch<AppDispatch>();
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

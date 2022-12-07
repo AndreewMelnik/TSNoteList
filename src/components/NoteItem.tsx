@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NoteData } from "../types/data";
 import { notesSlice } from "../store/notesSlice";
-import { Card, Stack } from "react-bootstrap";
+import { Button, Card, Stack } from "react-bootstrap";
 import "../style.scss"
 
 
@@ -40,6 +40,11 @@ const NoteItem: React.FC<NotesItemProps> = (props) => {
                             direction="horizontal"
                             className="justify-content-center flex-wrap"
                         >
+                        </Stack>
+                        <Stack direction="horizontal" gap={2} className="justify-content-end">
+                        <Button onClick={() => dispatch(deleteNote(props.data.id))} variant="light" type="submit" size="sm">
+                           Delete
+                        </Button>
                         </Stack>
                     </Stack>
                 </Card.Body>
