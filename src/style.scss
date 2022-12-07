@@ -1,0 +1,51 @@
+$minWidth: 320px;
+$maxWidth: 1600;
+$maxWidthContainer: 1310;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+body {
+  color: #1f2432;
+
+  @media (max-width: #{$md1+px}) {
+    font-size:1rem;
+  }
+  @media (max-width: #{$md2+px}) {
+    font-size:0.8rem;
+  }
+  @media (max-width: #{$md3+px}) {
+    font-size:0.7rem;
+  }
+  @media (max-width: #{$md4+px}) {
+    font-size:0.5rem;
+  }
+}
+
+.container {
+  max-width: $maxWidthContainer + px;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media (max-width: #{$md1+px}) {
+    max-width: 970px;
+  }
+  @media (max-width: #{$md2+px}) {
+    max-width: 750px;
+  }
+  @media (max-width: #{$md3+px}) {
+    max-width: none;
+    padding: 0 10px;
+  }
+}
+
+.card {
+  transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
+
+  &:hover, &:focus {
+    translate: 0 -5px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2);
+  }
+}
+
