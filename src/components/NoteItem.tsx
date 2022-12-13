@@ -32,21 +32,21 @@ const NoteItem: React.FC<NotesItemProps> = (props) => {
         dispatch(updateNote({id: props.data.id, title: title, description: description, tags:tags}));
     }
     return (
-        <div className="card">
-            <Card className={"h-100 text-reset text-decoration-none"}>
+            <Card className={"h-100 mt-4 text-reset text-decoration-none"}>
                 <Card.Body>
                     <Stack gap={2} className="align-items-center justify-content-center h-100">
                         {!NoteEdit ? (
                             <>
                                 <span className="fs-5">{title}</span>
                                 <span className="fs-5">{description}</span>
-                                <span className="fs-5">{tags}</span>
+                                <span className="tags">{tags}</span>
                             </>
                         ) : (
                             <>
                                 <FormControl value={title} onChange={e => setTitle(e.target.value)}/>
                                 <FormControl value={description} onChange={e => setDescription(e.target.value)}/>
-                                <FormControl value={tags} onChange={e => setTags(extractTags(e.target.value))}/>
+                                <FormControl value={tags} onChange={e => setTags(extractTags(e.target.value))}
+                                             />
                             </>)}
                         <Stack
                             gap={1}
@@ -72,7 +72,6 @@ const NoteItem: React.FC<NotesItemProps> = (props) => {
                     </Stack>
                 </Card.Body>
             </Card>
-        </div>
     )
 }
 
