@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { notesSlice } from "../store/notesSlice";
 import { AppDispatch } from "../store/store";
+import { extractTags } from "../store/util";
 
 
 export function NoteForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [tags, setTags] = useState<string[]>([]);
     const {addNote} = notesSlice.actions;
     const {deleteNote} = notesSlice.actions;
     const dispatch = useDispatch<AppDispatch>();
@@ -16,13 +18,15 @@ export function NoteForm() {
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTitle(e.target.value);
         setDescription(e.target.value);
+        setTags(extractTags(e.target.value))
     };
 
     const submitForm = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description}));
+        dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description, tags:tags}));
         setTitle('');
         setDescription('')
+        setTags([])
     };
 
     return (
@@ -40,8 +44,7 @@ export function NoteForm() {
                         <Col>
                             <Form.Group controlId="tags">
                                 <FormLabel>Tags</FormLabel>
-                                <CreatableReactSelect
-                                    isMulti/>
+                                <FormControl value={tags} onChange={e => setTags(extractTags(e.target.value))}/>
                             </Form.Group>
                         </Col>
                     </Row>
