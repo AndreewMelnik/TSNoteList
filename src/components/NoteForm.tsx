@@ -7,7 +7,8 @@ import { AppDispatch } from "../store/store";
 import { extractTags } from "../store/util";
 
 
-export function NoteForm() {
+export function NoteForm(props: { show: any; onClose: any; }) {
+    const { show, onClose } = props;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState<string[]>([]);
@@ -30,7 +31,7 @@ export function NoteForm() {
     };
 
     return (
-        <Container className="my-1">
+        <Container className="py-lg-4 px-lg-5">
             <FormLabel className="fs-5 mb-4"> New Note</FormLabel>
             <Form onSubmit={submitForm}>
                 <Stack gap={4}>
@@ -57,10 +58,10 @@ export function NoteForm() {
                     </Col>
                     <Stack direction="horizontal" gap={2} className="justify-content-end">
                         <Button
-                            type="submit" variant="primary">
+                            type="submit" variant="primary" onClick={onClose}>
                             Save
                         </Button>
-                        <Button type="button" variant="outline-secondary">
+                        <Button type="button" variant="outline-secondary" onClick={onClose}>
                             Cancel
                         </Button>
                     </Stack>

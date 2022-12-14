@@ -1,10 +1,10 @@
-import { NoteForm } from './NoteForm';
+import {NoteFilter} from "./NoteFilter";
 import { NoteList } from './NoteList';
 
 export const Main: React.FC = () => {
     return (
         <div>
-            <NoteForm />
+            <NoteFilter/>
             <NoteList />
         </div>
     );
