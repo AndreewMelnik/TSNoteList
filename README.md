@@ -1,4 +1,4 @@
-## Notes additing app build with React, Redux, Typescript and React-Bootstrap.
+## Notes additing app built with React, Redux, Typescript and React-Bootstrap.
 
 With this app you can create notes with description and tags in them, edit, delete, filter them.
 
