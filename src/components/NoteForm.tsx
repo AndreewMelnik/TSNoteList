@@ -7,30 +7,29 @@ import { extractTags } from "../store/util";
 
 
 export function NoteForm(props: { show: any; onClose: any; }) {
-    const { show, onClose } = props;
+    const {onClose} = props;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [tags, setTags] = useState<string[]>([]);
     const {addNote} = notesSlice.actions;
-    const {deleteNote} = notesSlice.actions;
     const dispatch = useDispatch<AppDispatch>();
 
-    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setTitle(e.target.value);
-        setDescription(e.target.value);
-        setTags(extractTags(e.target.value))
-    };
+    // const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    //     setTitle(e.target.value);
+    //     setDescription(e.target.value);
+    //     setTags(extractTags(e.target.value))
+    // };
 
     const submitForm = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description, tags:tags}));
+        dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description, tags: tags}));
         setTitle('');
         setDescription('')
         setTags([])
     };
 
     return (
-        <Container className="py-lg-4 px-lg-5">
+        <Container className="py-4 px-5">
             <FormLabel className="fs-5 mb-4"> New Note</FormLabel>
             <Form onSubmit={submitForm}>
                 <Stack gap={4}>
