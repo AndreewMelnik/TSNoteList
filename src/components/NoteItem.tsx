@@ -1,6 +1,6 @@
-import { AppDispatch } from '../store/store';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../store/store';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NoteData } from "../types/data";
 import { notesSlice } from "../store/notesSlice";
 import { Button, Card, FormControl, Stack } from "react-bootstrap";
@@ -20,6 +20,16 @@ const NoteItem: React.FC<NotesItemProps> = (props) => {
     const dispatch = useDispatch<AppDispatch>();
     const {deleteNote, updateNote} = notesSlice.actions;
     const [NoteEdit, setNoteEdit] = useState(false);
+    const filters = useSelector((state: RootState) => state.filtersReducer.filters);
+    const [isActive, setActive] = useState(true);
+
+    useEffect(() => {
+        setActive(false);
+        if (!filters.length) setActive(true);
+        filters.forEach((tag) => {
+            if (tags.map((item) => item.toLowerCase()).includes(tag.toLowerCase())) setActive(true);
+        });
+    }, [filters]);
 
     const handleInput = (value: string) => {
         setTitle(value);
@@ -29,50 +39,51 @@ const NoteItem: React.FC<NotesItemProps> = (props) => {
 
     const submitEdit = () => {
         setNoteEdit(false);
-        dispatch(updateNote({id: props.data.id, title: title, description: description, tags:tags}));
+        dispatch(updateNote({id: props.data.id, title: title, description: description, tags: tags}));
     }
-    return (
-            <Card className={"h-100 mt-4 text-reset text-decoration-none"}>
-                <Card.Body>
-                    <Stack gap={2} className="align-items-center justify-content-center h-100">
-                        {!NoteEdit ? (
-                            <>
-                                <span className="fs-5">{title}</span>
-                                <span className="fs-5">{description}</span>
-                                <span className="tags">{tags}</span>
-                            </>
-                        ) : (
-                            <>
-                                <FormControl value={title} onChange={e => setTitle(e.target.value)}/>
-                                <FormControl value={description} onChange={e => setDescription(e.target.value)}/>
-                                <FormControl value={tags} onChange={e => setTags(extractTags(e.target.value))}
-                                             />
-                            </>)}
-                        <Stack
-                            gap={1}
-                            direction="horizontal"
-                            className="justify-content-center flex-wrap"
-                        >
-                        </Stack>
-                        <Stack direction="horizontal" gap={2} className="justify-content-end">
-                            {!NoteEdit ? (
-                                <Button onClick={() => setNoteEdit(true)} variant="primary" type="submit" size="sm">
-                                    Edit
-                                </Button>
-                            ) : (
-                                <Button onClick={submitEdit} variant="primary" type="submit" size="sm">
-                                    Submit
-                                </Button>
-                            )}
-                            <Button onClick={() => dispatch(deleteNote(props.data.id))} variant="light" type="submit"
-                                    size="sm">
-                                Delete
-                            </Button>
-                        </Stack>
+    const item = (
+        <Card className={"h-100 mt-4 text-reset text-decoration-none"}>
+            <Card.Body>
+                <Stack gap={2} className="align-items-center justify-content-center h-100">
+
+                    {!NoteEdit ? (
+                        <>
+                            <span className="fs-5">{title}</span>
+                            <span className="fs-5">{description}</span>
+                            <span className="tags">{tags}</span>
+                        </>
+                    ) : (
+                        <>
+                            <FormControl value={title} onChange={e => setTitle(e.target.value)}/>
+                            <FormControl value={description} onChange={e => setDescription(e.target.value)}/>
+                            <FormControl value={tags} onChange={e => setTags(extractTags(e.target.value))}/>
+                        </>)}
+                    <Stack
+                        gap={1}
+                        direction="horizontal"
+                        className="justify-content-center flex-wrap"
+                    >
                     </Stack>
-                </Card.Body>
-            </Card>
-    )
+                    <Stack direction="horizontal" gap={2} className="justify-content-end">
+                        {!NoteEdit ? (
+                            <Button onClick={() => setNoteEdit(true)} variant="primary" type="submit" size="sm">
+                                Edit
+                            </Button>
+                        ) : (
+                            <Button onClick={submitEdit} variant="primary" type="submit" size="sm">
+                                Submit
+                            </Button>
+                        )}
+                        <Button onClick={() => dispatch(deleteNote(props.data.id))} variant="light" type="submit"
+                                size="sm">
+                            Delete
+                        </Button>
+                    </Stack>
+                </Stack>
+            </Card.Body>
+        </Card>
+    );
+    return <>{isActive && item}</>;
 }
 
 

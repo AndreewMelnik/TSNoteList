@@ -4,10 +4,6 @@ export interface NoteData{
     description: string
     tags: string[]
 }
-// export type Tag = {
-//     id: string
-//     label: string
-// }
 
 
 

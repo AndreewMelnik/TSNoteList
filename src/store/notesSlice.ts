@@ -15,6 +15,9 @@ export const notesSlice = createSlice({
     addNote(state, action: PayloadAction<NoteData>) {
       state.notes.push(action.payload);
     },
+    filterNote(state, action: PayloadAction<NoteData>) {
+      state.notes = state.notes.filter((item) => item.id != action.payload);
+    },
     deleteNote(state, action: PayloadAction<number>) {
       state.notes = state.notes.filter((item) => item.id != action.payload);
     },

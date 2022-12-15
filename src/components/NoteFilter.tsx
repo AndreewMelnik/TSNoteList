@@ -1,13 +1,15 @@
-import { Button, Col, Container, Form, FormControl, FormLabel, Row, Stack, Modal } from "react-bootstrap";
-import { extractTags } from "../store/util";
+import { Button, Col, Form, FormControl, FormLabel, Row, Modal } from "react-bootstrap";
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { filtersSlice } from '../store/filterSlice';
+import { AppDispatch, RootState } from '../store/store';
 import { NoteForm } from "./NoteForm";
 
 
 
-export function NoteFilter() {
+// @ts-ignore
+export const NoteFilter = ({ handleSearchNote }) => {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -25,7 +27,9 @@ export function NoteFilter() {
                         <Col>
                             <Form.Group controlId="title">
                                 <FormLabel>Title</FormLabel>
-                                <FormControl  required placeholder="Enter title to find"/>
+                                <FormControl onChange={(event) =>
+                                    handleSearchNote(event.target.value)
+                                }  required placeholder="Enter title to find"/>
                             </Form.Group>
                         </Col>
                         <Col>

@@ -1,5 +1,4 @@
 import { Button, Col, Container, Form, FormControl, FormLabel, Row, Stack } from "react-bootstrap";
-import CreatableReactSelect from "react-select/creatable";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { notesSlice } from "../store/notesSlice";
