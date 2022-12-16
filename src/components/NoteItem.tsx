@@ -35,7 +35,7 @@ export const NoteItem: React.FC<NotesItemProps> = (props) => {
             <Card.Body className={"overflow-hidden"}>
                 <Stack
                     gap={2}
-                    className="align-items-baseline justify-content-center h-100"
+                    className="align-items-inherit justify-content-center h-100"
                 >
                     {!NoteEdit ? (
                         <>
