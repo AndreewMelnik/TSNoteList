@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NoteData } from "../types/data";
 import { deleteNote, updateNote } from "../store/notesSlice";
-import { Button, Card, FormControl, Stack } from "react-bootstrap";
+import { Badge, Button, Card, FormControl, ListGroup, Stack } from "react-bootstrap";
 import { extractTags } from "../store/util";
 import "../style.scss";
 
@@ -32,16 +32,25 @@ export const NoteItem: React.FC<NotesItemProps> = (props) => {
     };
     return (
         <Card className={"h-100 mt-4 text-reset text-decoration-none"}>
-            <Card.Body>
+            <Card.Body className={"overflow-hidden"}>
                 <Stack
                     gap={2}
-                    className="align-items-center justify-content-center h-100"
+                    className="align-items-baseline justify-content-center h-100"
                 >
                     {!NoteEdit ? (
                         <>
-                            <span className="fs-5">{title}</span>
-                            <span className="fs-5">{description}</span>
-                            <span className="tags">{tags}</span>
+                            <ListGroup.Item
+                                as="li"
+                                className="d-flex justify-content-between align-items-start"
+                            >
+                                <div className="ms-2 me-auto text-break">
+                                    <div className="fw-bold">{title}</div>
+                                    {description}
+                                </div>
+                                <Badge bg="primary" pill>
+                                    {tags}
+                                </Badge>
+                            </ListGroup.Item>
                         </>
                     ) : (
                         <>

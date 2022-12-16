@@ -10,23 +10,28 @@ body {
   color: #1f2432;
 
   @media (max-width: #{$md1+px}) {
-    font-size:1rem;
+    font-size: 1rem;
   }
   @media (max-width: #{$md2+px}) {
-    font-size:0.8rem;
+    font-size: 0.8rem;
   }
   @media (max-width: #{$md3+px}) {
-    font-size:0.7rem;
+    font-size: 0.7rem;
   }
   @media (max-width: #{$md4+px}) {
-    font-size:0.5rem;
+    font-size: 0.5rem;
   }
 }
 
 .container {
   max-width: $maxWidthContainer + px;
-  padding: 0 15px;
   margin: 0 auto;
+  border-radius: 10px;
+  border-style: solid;
+  padding: 20px 20px 5% 20px;
+  border-color: black;
+  max-height: 100%;
+  min-height: 600px;
 
   @media (max-width: #{$md1+px}) {
     max-width: 970px;
@@ -41,7 +46,6 @@ body {
 }
 
 
-
 .card {
   transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
 
@@ -51,12 +55,14 @@ body {
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2);
   }
 }
+
 .tags {
   background: #fff80099;
   border-radius: 5px;
   display: inline-flex;
-  font-size: 1.25rem!important;
+  font-size: 1.25rem !important;
 }
+
 span {
   cursor: default;
 }
