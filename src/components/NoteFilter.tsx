@@ -1,8 +1,10 @@
 import { Button, Col, Form, FormControl, FormLabel, Modal, Row, } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setSearchQuery } from "../store/filterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery, setTags } from "../store/filterSlice";
 import { NoteForm } from "./NoteForm";
+import { extractTags } from "../store/util";
+import { RootState } from "../store/store";
 
 export const NoteFilter = () => {
     const [show, setShow] = useState(false);
@@ -10,7 +12,9 @@ export const NoteFilter = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    const tags = useSelector(
+        (state: RootState) => state.filtersReducer.tags
+    );
     return (
         <>
             <Row className="align-items-center mb-4">
@@ -40,7 +44,13 @@ export const NoteFilter = () => {
                     <Col>
                         <Form.Group controlId="tags">
                             <FormLabel>Tags</FormLabel>
-                            <FormControl placeholder="Enter tags to find"/>
+                            <FormControl
+
+                                onChange={(event) =>
+                                    dispatch(setTags(extractTags(event.target.value)))
+                                }
+                                value={tags}
+                                placeholder="Enter tags to find"/>
                         </Form.Group>
                     </Col>
                 </Row>

@@ -5,19 +5,23 @@ import { NoteItem } from "./NoteItem";
 import { Col, Row } from "react-bootstrap";
 import { useMemo } from "react";
 
-export const NoteList: React.FC = () => {
+export const NotesList: React.FC = () => {
     const notes = useSelector((state: RootState) => state.notesReducer.notes);
     const searchQuery = useSelector(
         (state: RootState) => state.filtersReducer.searchQuery
+    );
+    const tags = useSelector(
+        (state: RootState) => state.filtersReducer.tags
     );
     //берем из рутстейта наш комбайн редьюсер, и через фильтерс редьюсер берем то состояние, которое мы ввели в
     // searchQuery, и с помощью useMemo мы переписываем notes по условию внутри includes(введённые данные)
     const filteredNotes = useMemo(
         () =>
             notes.filter((note) =>
-                note.title.toLowerCase().includes(searchQuery.toLowerCase())
+                note.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                note.tags.toString().includes(tags.toString())
             ),
-        [notes, searchQuery]
+        [notes, searchQuery, tags]
     );
 
     return (

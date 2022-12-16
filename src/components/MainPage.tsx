@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { NoteFilter } from "./NoteFilter";
-import { NoteList } from "./NoteList";
+import { NotesList } from "./NotesList";
 
 export const Main: React.FC = () => {
     const notes = useSelector((state: RootState) => state.notesReducer.notes);
@@ -23,7 +23,7 @@ export const Main: React.FC = () => {
     return (
         <div>
             <NoteFilter/>
-            <NoteList/>
+            <NotesList/>
         </div>
     );
 };

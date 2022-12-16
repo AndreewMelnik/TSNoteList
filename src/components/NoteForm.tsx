@@ -14,12 +14,6 @@ export function NoteForm(props: { show: any; onClose: any; }) {
     const {addNote} = notesSlice.actions;
     const dispatch = useDispatch<AppDispatch>();
 
-    // const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     setTitle(e.target.value);
-    //     setDescription(e.target.value);
-    //     setTags(extractTags(e.target.value))
-    // };
-
     const submitForm = (e: React.FormEvent) => {
         e.preventDefault();
         dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description, tags: tags}));
@@ -50,7 +44,7 @@ export function NoteForm(props: { show: any; onClose: any; }) {
                     <Col>
                         <Form.Group controlId="description">
                             <FormLabel>Body</FormLabel>
-                            <FormControl value={description} onChange={e => setDescription(e.target.value)} required
+                            <FormControl value={description} onChange={e => setDescription(e.target.value)}
                                          as="textarea" rows={8}/>
                         </Form.Group>
                     </Col>

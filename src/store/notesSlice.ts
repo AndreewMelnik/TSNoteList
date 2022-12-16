@@ -4,11 +4,13 @@ import { NoteData } from "../types/data";
 interface NoteDataState {
     notes: NoteData[];
     searchQuery: string;
+    tags: string[];
 }
 
 const initialState: NoteDataState = {
     notes: [],
     searchQuery: "",
+    tags: []
 };
 
 export const notesSlice = createSlice({
