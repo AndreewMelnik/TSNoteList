@@ -6,7 +6,9 @@ import { AppDispatch } from "../store/store";
 import { extractTags } from "../store/util";
 
 
-export function NoteForm(props: { show: any; onClose: any; }) {
+export function NoteForm(props: { show: any; onClose: any; onSubmit: any }) {
+
+    const [show, setShow] = useState(true);
     const {onClose} = props;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -14,8 +16,9 @@ export function NoteForm(props: { show: any; onClose: any; }) {
     const {addNote} = notesSlice.actions;
     const dispatch = useDispatch<AppDispatch>();
 
-    const submitForm = (e: React.FormEvent) => {
+    const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        // setShow(false);
         dispatch(addNote({id: new Date().getTime(), title: title.trim(), description: description, tags: tags}));
         setTitle('');
         setDescription('')
@@ -25,13 +28,16 @@ export function NoteForm(props: { show: any; onClose: any; }) {
     return (
         <Container className="py-4 px-5">
             <FormLabel className="fs-5 mb-4"> New Note</FormLabel>
-            <Form onSubmit={submitForm}>
+            <Form onSubmit={onSubmit}>
                 <Stack gap={4}>
                     <Row>
                         <Col>
                             <Form.Group controlId="title">
                                 <FormLabel>Title</FormLabel>
                                 <FormControl value={title} onChange={e => setTitle(e.target.value)} required/>
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid state.
+                                </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                         <Col>
@@ -50,7 +56,7 @@ export function NoteForm(props: { show: any; onClose: any; }) {
                     </Col>
                     <Stack direction="horizontal" gap={2} className="justify-content-end">
                         <Button
-                            type="submit" variant="primary" onClick={onClose}>
+                            type="submit" variant="primary" onSubmit={onSubmit} onClick={onClose}>
                             Save
                         </Button>
                         <Button type="button" variant="outline-secondary" onClick={onClose}>

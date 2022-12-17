@@ -16,6 +16,10 @@ export const NoteFilter = () => {
     const tags = useSelector(
         (state: RootState) => state.filtersReducer.tags
     );
+    const submitForm = (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        handleClose();
+    };
 
     return (
         <>
@@ -71,8 +75,9 @@ export const NoteFilter = () => {
                 </Row>
             </Form>
             <Modal className="modal-lg" show={show} onHide={handleClose}>
-                <NoteForm show={show} onClose={handleClose}/>
+                <NoteForm show={show} onClose={handleClose} onSubmit={submitForm}/>
             </Modal>
         </>
     );
+
 };
