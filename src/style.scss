@@ -67,6 +67,12 @@ span {
   cursor: default;
 }
 
+h1 {
+  @media (max-width: #{$md4+px}) {
+    font-size: 2em;
+  }
+}
+
 span.input-group-text {
   @media (max-width: #{$md3+px}) {
     display: none;
