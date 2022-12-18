@@ -6,6 +6,8 @@ import { NoteForm } from "./NoteForm";
 import { extractTags } from "../store/util";
 import { RootState } from "../store/store";
 import { BsSearch } from "react-icons/bs";
+import "../style.scss";
+
 
 export const NoteFilter = () => {
     const [show, setShow] = useState(false);
@@ -16,10 +18,6 @@ export const NoteFilter = () => {
     const tags = useSelector(
         (state: RootState) => state.filtersReducer.tags
     );
-    const submitForm = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        handleClose();
-    };
 
     return (
         <>
@@ -36,7 +34,7 @@ export const NoteFilter = () => {
             <Form>
                 <Row className="mb-4">
                     <Col>
-                        <Form.Group controlId="title">
+                        <Form.Group className="filter-title" controlId="title">
                             <FormLabel>Title</FormLabel>
                             {/*//ниже мы отслеживаем введенные данные и записываем их в состояние searchQuery*/}
                             <InputGroup>
@@ -53,7 +51,7 @@ export const NoteFilter = () => {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlId="tags">
+                        <Form.Group className="filter-tags" controlId="tags">
                             <FormLabel>Tags</FormLabel>
                             <InputGroup>
                                 <InputGroup.Text>
@@ -75,7 +73,7 @@ export const NoteFilter = () => {
                 </Row>
             </Form>
             <Modal className="modal-lg" show={show} onHide={handleClose}>
-                <NoteForm show={show} onClose={handleClose} onSubmit={submitForm}/>
+                <NoteForm onClose={handleClose}/>
             </Modal>
         </>
     );

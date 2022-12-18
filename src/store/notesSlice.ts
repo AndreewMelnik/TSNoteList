@@ -8,7 +8,7 @@ interface NoteDataState {
 }
 
 const initialState: NoteDataState = {
-    notes: [],
+    notes: [{id: 1, title: 'Your title', description: 'Your description', tags: ['tags']}],
     searchQuery: "",
     tags: []
 };
@@ -17,9 +17,6 @@ export const notesSlice = createSlice({
     name: "notes",
     initialState,
     reducers: {
-        setNotes(state, action: PayloadAction<NoteData[]>) {
-            state.notes = action.payload;
-        },
         addNote(state, action: PayloadAction<NoteData>) {
             state.notes.push(action.payload);
         },
@@ -35,5 +32,5 @@ export const notesSlice = createSlice({
     },
 });
 
-export const {addNote, deleteNote, updateNote, setNotes} = notesSlice.actions;
+export const {deleteNote, updateNote} = notesSlice.actions;
 export default notesSlice.reducer;

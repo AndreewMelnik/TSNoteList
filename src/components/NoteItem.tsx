@@ -1,5 +1,5 @@
 import { AppDispatch } from "../store/store";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NoteData } from "../types/data";
 import { deleteNote, updateNote } from "../store/notesSlice";
@@ -12,24 +12,29 @@ interface NotesItemProps {
 }
 
 export const NoteItem: React.FC<NotesItemProps> = (props) => {
-    const [title, setTitle] = useState(props.data.title);
-    const [description, setDescription] = useState(props.data.description);
-    const [tags, setTags] = useState(props.data.tags);
-    const dispatch = useDispatch<AppDispatch>();
-    const [NoteEdit, setNoteEdit] = useState(false);
+    const [title, setTitle] = useState(props.data.title), [description, setDescription] = useState(props.data.description), [tags, setTags] = useState(props.data.tags),
+        dispatch = useDispatch<AppDispatch>(), [NoteEdit, setNoteEdit] = useState(false), submitEdit = () => {
+            setNoteEdit(false);
+            dispatch(
+                updateNote({
+                    id: props.data.id,
+                    title,
+                    description,
+                    tags,
+                })
+            );
+        }, updateTitle = (e: SyntheticEvent) => {
+            const target = e.target as HTMLInputElement;
+            setTitle(target.value)
+        }, updateDescription = (e: SyntheticEvent) => {
+            const target = e.target as HTMLInputElement;
+            setDescription(target.value)
+        }, updateTags = (e: SyntheticEvent) => {
+            const target = e.target as HTMLSelectElement;
+            setTags(extractTags(target.value))
+        };
 
 
-    const submitEdit = () => {
-        setNoteEdit(false);
-        dispatch(
-            updateNote({
-                id: props.data.id,
-                title: title,
-                description: description,
-                tags: tags,
-            })
-        );
-    };
     return (
         <Card className={"h-100 mt-4 text-reset text-decoration-none"}>
             <Card.Body className={"overflow-hidden"}>
@@ -55,16 +60,23 @@ export const NoteItem: React.FC<NotesItemProps> = (props) => {
                     ) : (
                         <>
                             <FormControl
+                                size="sm"
+                                placeholder="Edit title"
                                 value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={updateTitle}
                             />
                             <FormControl
+                                size="sm"
+                                placeholder="Edit description"
                                 value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={updateDescription}
+                                as="textarea" rows={2}
                             />
                             <FormControl
+                                size="sm"
+                                placeholder="Edit tags"
                                 value={tags}
-                                onChange={(e) => setTags(extractTags(e.target.value))}
+                                onChange={updateTags}
                             />
                         </>
                     )}
