@@ -5,7 +5,7 @@ import { Main } from "./components/MainPage";
 
 const App: React.FC = () => {
     return (
-        <Container className="my-4 w-50">
+        <Container className="main-container">
             <Main/>
         </Container>
     );
