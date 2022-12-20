@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TSNoteList/static/css/main.c8d5f658.css",
+    "main.css": "/TSNoteList/static/css/main.b92a4efc.css",
     "main.js": "/TSNoteList/static/js/main.25f9f9fa.js",
     "index.html": "/TSNoteList/index.html",
-    "main.c8d5f658.css.map": "/TSNoteList/static/css/main.c8d5f658.css.map",
+    "main.b92a4efc.css.map": "/TSNoteList/static/css/main.b92a4efc.css.map",
     "main.25f9f9fa.js.map": "/TSNoteList/static/js/main.25f9f9fa.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8d5f658.css",
+    "static/css/main.b92a4efc.css",
     "static/js/main.25f9f9fa.js"
   ]
 }
