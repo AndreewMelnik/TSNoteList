@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TSNoteList/static/css/main.c8d5f658.css",
+    "main.js": "/TSNoteList/static/js/main.25f9f9fa.js",
+    "index.html": "/TSNoteList/index.html",
+    "main.c8d5f658.css.map": "/TSNoteList/static/css/main.c8d5f658.css.map",
+    "main.25f9f9fa.js.map": "/TSNoteList/static/js/main.25f9f9fa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8d5f658.css",
+    "static/js/main.25f9f9fa.js"
+  ]
+}
