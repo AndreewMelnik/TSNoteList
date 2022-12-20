@@ -32,16 +32,22 @@ body, .container, .form-control, .btn {
   border-color: dimgray;
   max-height: 100%;
   min-height: 600px;
+  width: 50% !important;
 
   @media (max-width: #{$md1+px}) {
     max-width: 970px;
   }
   @media (max-width: #{$md2+px}) {
     max-width: 750px;
+    width: 65% !important;
   }
   @media (max-width: #{$md3+px}) {
     max-width: none;
+    width: 75% !important;
     padding: 0 10px;
+  }
+  @media (max-width: #{$md4+px}) {
+    width: 90% !important;
   }
 }
 
