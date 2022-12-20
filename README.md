@@ -1,8 +1,9 @@
 ## Notes additing app built with React, Redux, Typescript and React-Bootstrap.
 
-With this app you can create notes with description and tags in them, edit, delete, filter them.
+Design is minimalistic and adaptive. With this app you can create notes with description and tags in them, edit, delete, filter them.
 
-Design is minimalistic and adaptive.
+
+![Screenshot 2022-12-20 135816](https://user-images.githubusercontent.com/89791357/208653709-5de45b64-8117-4431-9c7f-605d95e0fa5d.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using
 the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
